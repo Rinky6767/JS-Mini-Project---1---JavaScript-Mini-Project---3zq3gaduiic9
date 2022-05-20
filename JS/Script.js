@@ -121,7 +121,7 @@ document.addEventListener("touchstart", function(){
         let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
-        if (x < 30 && y<=255) {
+        if (x < 10 && y<=255) {
             going.pause();
             lost.play();
             over = true;
