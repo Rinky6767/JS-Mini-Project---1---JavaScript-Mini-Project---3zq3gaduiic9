@@ -102,6 +102,9 @@ function incre(score) {
 }
 
 document.addEventListener("touchstart", function(){
+    setInterval(function(){
+        going.play();
+    },1000);
     if (!isover) {
             isup = true;
             dino.classList.add("jumpant");
