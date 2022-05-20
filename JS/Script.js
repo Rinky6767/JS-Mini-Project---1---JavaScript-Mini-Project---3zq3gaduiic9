@@ -2,9 +2,7 @@
 let dino = document.querySelector(".dino");
 let going= new Audio("GoingOn.mp3");
 let lost= new Audio("lost.mp3");
-setInterval(function(){
-    going.play();
-},1000);
+
 
 let score = 0;
 let isover = false;
@@ -19,6 +17,9 @@ if (dis.hasAttribute("class")) {
 
 incre(score);
 document.addEventListener("keydown", function (e) {
+    setInterval(function(){
+        going.play();
+    },1000);
     let code = e.code;
     if (!isover) {
         if (code === "ArrowUp") {
@@ -120,7 +121,7 @@ document.addEventListener("touchstart", function(){
         let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
-        if (x < 50 && y<=255) {
+        if (x < 30 && y<=255) {
             going.pause();
             lost.play();
             over = true;
