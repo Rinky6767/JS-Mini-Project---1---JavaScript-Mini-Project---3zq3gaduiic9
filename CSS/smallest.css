@@ -1,0 +1,20 @@
+.dino {
+    width: 123px;
+    height: 125px;
+    background: url(../Images/dino4.png);
+}
+.tryno {
+    background: url(../Images/oppo4.png);
+    width: 350px;
+    height: 380px;
+}
+#score{
+    font-size: 1.0rem;
+    width: 22%;
+    height: 23%;
+    margin-right: 10%;
+}
+#gameover{
+    font-size: 0.8rem;
+    text-align: center;
+}
