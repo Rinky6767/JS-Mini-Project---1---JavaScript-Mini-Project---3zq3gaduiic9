@@ -153,7 +153,6 @@ document.addEventListener("touchstart", function () {
                 if (x < 50 && y <= 255) {
                     going.pause();
                     lost.play();
-                    over = true;
                     tryno.classList.remove("runanimation");
                     dino.classList.remove("jumpant");
                     let dis = document.querySelector("#gameover");
