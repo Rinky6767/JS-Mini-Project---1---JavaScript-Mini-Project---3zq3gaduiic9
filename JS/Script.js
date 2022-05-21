@@ -98,12 +98,11 @@ document.addEventListener("touchstart", function () {
         going.play();
     }, 1000);
     if (!isover) {
-            isup = true;
-            dino.classList.add("jumpant");
-            setTimeout(function () {
-                dino.classList.remove("jumpant");
-            }, 2000);
-        
+        dino.classList.add("jumpant");
+        setTimeout(function () {
+            dino.classList.remove("jumpant");
+        }, 2000);
+
     }
     let dinowidth = window.getComputedStyle("dino", null).getPropertyValue("width");
     let dinoheight = window.getComputedStyle("dino", null).getPropertyValue("height");
@@ -122,7 +121,7 @@ document.addEventListener("touchstart", function () {
         let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
-        if(dinowidth== "123" && dinoheight=="125" && trynowidth=="350" && trynoheight=="380"){
+        if (dinowidth == 123 && dinoheight == 125 && trynowidth == 350 && trynoheight == 380) {
             if (x < 5 && y <= 255) {
                 going.pause();
                 lost.play();
@@ -141,7 +140,7 @@ document.addEventListener("touchstart", function () {
                 dis.appendChild(btn);
             }
 
-            else if(dinowidth=="300" && dinoheight=="190"  || dinowidth=="370" && dinoheight=="220"){
+            else if (dinowidth == 300 && dinoheight ==190 || dinowidth == 370 && dinoheight == 220) {
                 if (x < 5 && y <= 255) {
                     going.pause();
                     lost.play();
@@ -162,7 +161,7 @@ document.addEventListener("touchstart", function () {
                 }
             }
         }
-        
+
     }, 300);
     if (!isover) {
         score += 1;
