@@ -51,28 +51,7 @@ function trigger() {
             }
         }, 300);
     }
-    else if (dinowidth == 123 && dinoheight == 125) {
-        if (x < 10 && y <= 255) {
-            going.pause();
-            lost.play();
-            tryno.classList.remove("runanimation");
-            dino.classList.remove("jumpant");
-            let dis = document.querySelector("#gameover");
-            dis.removeAttribute("text");
-            dis.textContent = "Game Over";
-            if (score > 0) {
-                score = score - 1;
-                updateScore(score);
-            }
-            score = 0;
-            isover = true;
-            let btn = play();
-            dis.appendChild(btn);
-        }
-    
 }
-}
-
 
 document.addEventListener("keydown", function (e) {
     playsound = "true";
@@ -94,11 +73,9 @@ document.addEventListener("keydown", function (e) {
             dino.style.left = left + 112 + "px";
         }
     }
-
     //game state check
     trigger();
     //score
-
     if (!isover) {
         score += 1;
         updateScore(score);
@@ -121,7 +98,6 @@ function play() {
     });
     return again;
 }
-
 function incre(score) {
     if (score / 11) {
         let dur = window.getComputedStyle(tryno, null).getPropertyValue("animation-duration");
@@ -143,10 +119,8 @@ document.addEventListener("touchstart", function () {
     }
     let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
     let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
-
     let x = 0;
     let y = 0;
-
     //gameover
     setInterval(function () {
         let dino = document.querySelector(".dino");
@@ -174,7 +148,6 @@ document.addEventListener("touchstart", function () {
                 let btn = play();
                 dis.appendChild(btn);
             }
-
             else if (dinowidth == 300 && dinoheight == 190 || dinowidth == 370 && dinoheight == 220) {
                 if (x < 50 && y <= 255) {
                     going.pause();
