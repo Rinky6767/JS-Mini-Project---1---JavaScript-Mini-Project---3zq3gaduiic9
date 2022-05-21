@@ -104,11 +104,11 @@ document.addEventListener("touchstart", function () {
         }, 2000);
 
     }
-    let dinowidth = window.getComputedStyle("dino", null).getPropertyValue("width");
-    let dinoheight = window.getComputedStyle("dino", null).getPropertyValue("height");
+    let dinowidth = parseInt(window.getComputedStyle("dino", null).getPropertyValue("width"));
+    let dinoheight =parseInt(window.getComputedStyle("dino", null).getPropertyValue("height"));
 
-    let trynowidth = window.getComputedStyle("tryno", null).getPropertyValue("width");
-    let trynoheight = window.getComputedStyle("tryno", null).getPropertyValue("height");
+    let trynowidth = parseInt(window.getComputedStyle("tryno", null).getPropertyValue("width"));
+    let trynoheight = parseInt(window.getComputedStyle("tryno", null).getPropertyValue("height"));
     let x = 0;
     let y = 0;
 
