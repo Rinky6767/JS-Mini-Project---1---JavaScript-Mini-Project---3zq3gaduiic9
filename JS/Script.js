@@ -4,6 +4,7 @@ let tryno = document.querySelector(".tryno");
 let going = new Audio("GoingOn.mp3");
 let lost = new Audio("lost.mp3");
 let score = 0;
+let playsound = false;
 isover = false;
 let dis = document.querySelector("#gameover");
 if (dis.hasAttribute("class")) {
@@ -13,8 +14,41 @@ if (dis.hasAttribute("class")) {
 }
 
 incre(score);
+trigger();
+function trigger() {
+    setInterval(function () {
+        let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+        let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+        let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
+        let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
+        x = Math.abs(dx - tx);
+        y = Math.abs(dy - ty);
+        if (x < 50 && y <= 255) {
+            if (playsound) {
+                going.pause();
+                lost.play();
+            }
+
+            tryno.classList.remove("runanimation");
+            dino.classList.remove("jumpant");
+            let dis = document.querySelector("#gameover");
+            dis.removeAttribute("text");
+            dis.textContent = "Game Over";
+            if (score > 0) {
+                score = score - 1;
+                updateScore(score);
+            }
+            score = 0;
+            isover = true;
+            let btn = play();
+            dis.appendChild(btn);
+        }
+    }, 300);
+}
+
 
 document.addEventListener("keydown", function (e) {
+    playsound = "true";
     setInterval(function () {
         going.play();
     }, 1000);
@@ -33,38 +67,13 @@ document.addEventListener("keydown", function (e) {
             dino.style.left = left + 112 + "px";
         }
     }
-   
-
 
     let x = 0;
     let y = 0;
 
     //gameover
-    setInterval(function () {
-        let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
-        let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
-        let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
-        let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
-        x = Math.abs(dx - tx);
-        y = Math.abs(dy - ty);
-        if (x < 50 && y <= 255) {
-            going.pause();
-            lost.play();
-            tryno.classList.remove("runanimation");
-            dino.classList.remove("jumpant");
-            let dis = document.querySelector("#gameover");
-            dis.removeAttribute("text");
-            dis.textContent = "Game Over";
-            if (score > 0) {
-                score = score - 1;
-                updateScore(score);
-            }
-            score = 0;
-            isover = true;
-            let btn = play();
-            dis.appendChild(btn);
-        }
-    }, 300);
+    //here...
+    trigger();
     if (!isover) {
         score += 1;
         updateScore(score);
@@ -107,7 +116,7 @@ document.addEventListener("touchstart", function () {
 
     }
     let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
-    let dinoheight =parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
+    let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
 
     let x = 0;
     let y = 0;
@@ -121,7 +130,7 @@ document.addEventListener("touchstart", function () {
         let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
-        if (dinowidth == 123 && dinoheight == 125 ) {
+        if (dinowidth == 123 && dinoheight == 125) {
             if (x < 5 && y <= 255) {
                 going.pause();
                 lost.play();
@@ -140,8 +149,8 @@ document.addEventListener("touchstart", function () {
                 dis.appendChild(btn);
             }
 
-            else if (dinowidth == 300 && dinoheight ==190 || dinowidth == 370 && dinoheight == 220) {
-                if (x < 5 && y <= 255) {
+            else if (dinowidth == 300 && dinoheight == 190 || dinowidth == 370 && dinoheight == 220) {
+                if (x < 50 && y <= 255) {
                     going.pause();
                     lost.play();
                     over = true;
@@ -167,7 +176,6 @@ document.addEventListener("touchstart", function () {
         score += 1;
         updateScore(score);
     }
-
 });
 
 // function check() {
