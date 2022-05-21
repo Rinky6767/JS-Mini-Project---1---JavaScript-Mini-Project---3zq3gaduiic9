@@ -1,30 +1,27 @@
 // playerjump
 let dino = document.querySelector(".dino");
-let going= new Audio("GoingOn.mp3");
-let lost= new Audio("lost.mp3");
-
-
+let tryno = document.querySelector(".tryno");
+let going = new Audio("GoingOn.mp3");
+let lost = new Audio("lost.mp3");
 let score = 0;
 let isover = false;
 let dis = document.querySelector("#gameover");
-let tryno = document.querySelector(".tryno");
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
         dis.textContent = "";
     }, 1000);
 }
 
-
 incre(score);
 document.addEventListener("keydown", function (e) {
-    setInterval(function(){
+    setInterval(function () {
         going.play();
-    },1000);
+    }, 1000);
     let code = e.code;
     if (!isover) {
         if (code === "ArrowUp") {
             isup = true;
-          
+
             dino.classList.add("jumpant");
             setTimeout(function () {
                 dino.classList.remove("jumpant");
@@ -52,7 +49,7 @@ document.addEventListener("keydown", function (e) {
         y = Math.abs(dy - ty);
         console.log("x: " + x);
         console.log("y: " + y);
-        if (x < 50 && y<=255) {
+        if (x < 50 && y <= 255) {
             going.pause();
             lost.play();
             over = true;
@@ -100,54 +97,87 @@ function incre(score) {
         window.getComputedStyle(tryno, null).setProperty("animation-duration", dur);
     }
 }
+//touchevent
+document.addEventListener("touchstart", function () {
+    let dinowidth = window.getComputedStyle("dino", null).getPropertyValue("width");
+    let dinoheight = window.getComputedStyle("dino", null).getPropertyValue("height");
 
-document.addEventListener("touchstart", function(){
-    setInterval(function(){
-        going.play();
-    },1000);
-    if (!isover) {
-            isup = true;
-            dino.classList.add("jumpant");
-            setTimeout(function () {
-                dino.classList.remove("jumpant");
-            }, 2000);
-    }
-    let x = 0;
-    let y = 0;
+    let trynowidth = window.getComputedStyle("tryno", null).getPropertyValue("width");
+    let trynoheight = window.getComputedStyle("tryno", null).getPropertyValue("height");
 
-    //gameover
     setInterval(function () {
-        let dino = document.querySelector(".dino");
-        let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
-        let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
-        let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
-        let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
-        x = Math.abs(dx - tx);
-        y = Math.abs(dy - ty);
-        if (x < 5 && y<=255) {
-            going.pause();
-            lost.play();
-            over = true;
-            tryno.classList.remove("runanimation");
+        going.play();
+    }, 1000);
+
+    if (!isover) {
+        isup = true;
+        dino.classList.add("jumpant");
+        setTimeout(function () {
             dino.classList.remove("jumpant");
-            let dis = document.querySelector("#gameover");
-            dis.removeAttribute("text");
-            dis.textContent = "Game Over";
-            if (score > 0) {
-                score = score - 1;
-                updateScore(score);
-            }
-            score = 0;
-            isover = true;
-            let btn = play();
-            dis.appendChild(btn);
+        }, 2000);
+    }
+
+    if (dinowidth == "123px" && dinoheight == "125px" && trynowidth == "350px" && trynoheight == "380px") {
+        let x = 0;
+        let y = 0;
+        setInterval(function () {
+            let val = compute();
+            x = val[0];
+            y = val[1];
+        }, 300);
+        if (x < 50 && y <= 255) {
+            check();
         }
-    }, 300);
+    }
+    else {
+        setInterval(function () {
+            let val = compute();
+            x = val[0];
+            y = val[1];
+        }, 300);
+        if (x < 5 && y <= 255) {
+            check();
+        }
+    }
+
     if (!isover) {
         score += 1;
         updateScore(score);
     }
+
 });
+
+function check() {
+    //gameover
+    going.pause();
+    lost.play();
+    over = true;
+    tryno.classList.remove("runanimation");
+    dino.classList.remove("jumpant");
+    let dis = document.querySelector("#gameover");
+    dis.removeAttribute("text");
+    dis.textContent = "Game Over";
+    if (score > 0) {
+        score = score - 1;
+        updateScore(score);
+    }
+    score = 0;
+    isover = true;
+    let btn = play();
+    dis.appendChild(btn);
+}
+function compute() {
+    let x = 0;
+    let y = 0;
+    let dino = document.querySelector(".dino");
+    let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+    let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+    let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
+    let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
+    x = Math.abs(dx - tx);
+    y = Math.abs(dy - ty);
+    return ([x, y]);
+}
 
 
 
