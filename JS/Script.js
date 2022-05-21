@@ -33,12 +33,14 @@ document.addEventListener("keydown", function (e) {
             dino.style.left = left + 112 + "px";
         }
     }
+   
+
+
     let x = 0;
     let y = 0;
 
     //gameover
     setInterval(function () {
-        let dino = document.querySelector(".dino");
         let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
         let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
         let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
@@ -104,11 +106,9 @@ document.addEventListener("touchstart", function () {
         }, 2000);
 
     }
-    let dinowidth = parseInt(window.getComputedStyle("dino", null).getPropertyValue("width"));
-    let dinoheight =parseInt(window.getComputedStyle("dino", null).getPropertyValue("height"));
+    let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
+    let dinoheight =parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
 
-    let trynowidth = parseInt(window.getComputedStyle("tryno", null).getPropertyValue("width"));
-    let trynoheight = parseInt(window.getComputedStyle("tryno", null).getPropertyValue("height"));
     let x = 0;
     let y = 0;
 
@@ -121,7 +121,7 @@ document.addEventListener("touchstart", function () {
         let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
-        if (dinowidth == 123 && dinoheight == 125 && trynowidth == 350 && trynoheight == 380) {
+        if (dinowidth == 123 && dinoheight == 125 ) {
             if (x < 5 && y <= 255) {
                 going.pause();
                 lost.play();
@@ -170,37 +170,37 @@ document.addEventListener("touchstart", function () {
 
 });
 
-function check() {
-    //gameover
-    going.pause();
-    lost.play();
-    over = true;
-    tryno.classList.remove("runanimation");
-    dino.classList.remove("jumpant");
-    let dis = document.querySelector("#gameover");
-    dis.removeAttribute("text");
-    dis.textContent = "Game Over";
-    if (score > 0) {
-        score = score - 1;
-        updateScore(score);
-    }
-    score = 0;
-    isover = true;
-    let btn = play();
-    dis.appendChild(btn);
-}
-function compute() {
-    let x = 0;
-    let y = 0;
-    let dino = document.querySelector(".dino");
-    let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
-    let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
-    let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
-    let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
-    x = Math.abs(dx - tx);
-    y = Math.abs(dy - ty);
-    return ([x, y]);
-}
+// function check() {
+//     //gameover
+//     going.pause();
+//     lost.play();
+//     over = true;
+//     tryno.classList.remove("runanimation");
+//     dino.classList.remove("jumpant");
+//     let dis = document.querySelector("#gameover");
+//     dis.removeAttribute("text");
+//     dis.textContent = "Game Over";
+//     if (score > 0) {
+//         score = score - 1;
+//         updateScore(score);
+//     }
+//     score = 0;
+//     isover = true;
+//     let btn = play();
+//     dis.appendChild(btn);
+// }
+// function compute() {
+//     let x = 0;
+//     let y = 0;
+//     let dino = document.querySelector(".dino");
+//     let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+//     let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+//     let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
+//     let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
+//     x = Math.abs(dx - tx);
+//     y = Math.abs(dy - ty);
+//     return ([x, y]);
+// }
 
 
 
