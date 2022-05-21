@@ -4,7 +4,7 @@ let tryno = document.querySelector(".tryno");
 let going = new Audio("GoingOn.mp3");
 let lost = new Audio("lost.mp3");
 let score = 0;
-let isover = false;
+isover = false;
 let dis = document.querySelector("#gameover");
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
@@ -21,20 +21,17 @@ document.addEventListener("keydown", function (e) {
     if (!isover) {
         if (code === "ArrowUp") {
             isup = true;
-
             dino.classList.add("jumpant");
             setTimeout(function () {
                 dino.classList.remove("jumpant");
             }, 2000);
         }
-
         if (code === "ArrowRight") {
             let dino = document.querySelector(".dino");
             let left = parseInt(window.getComputedStyle(dino, null).getPropertyValue("Left"));
             dino.style.left = left + 112 + "px";
         }
     }
-
     let x = 0;
     let y = 0;
 
@@ -47,8 +44,6 @@ document.addEventListener("keydown", function (e) {
         let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
-        console.log("x: " + x);
-        console.log("y: " + y);
         if (x < 50 && y <= 255) {
             going.pause();
             lost.play();
@@ -107,10 +102,9 @@ document.addEventListener("touchstart", function () {
 
     setInterval(function () {
         going.play();
-    }, 1000);
+    }, 100);
 
     if (!isover) {
-        isup = true;
         dino.classList.add("jumpant");
         setTimeout(function () {
             dino.classList.remove("jumpant");
