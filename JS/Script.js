@@ -71,6 +71,7 @@ function trigger() {
         }
     
 }
+}
 
 
 document.addEventListener("keydown", function (e) {
@@ -194,7 +195,6 @@ document.addEventListener("touchstart", function () {
                 }
             }
         }
-
     }, 300);
     if (!isover) {
         score += 1;
@@ -203,6 +203,6 @@ document.addEventListener("touchstart", function () {
 });
 
 
-}
+
 
 
