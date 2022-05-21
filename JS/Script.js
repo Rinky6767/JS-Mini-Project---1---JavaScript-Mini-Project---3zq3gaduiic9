@@ -1,49 +1,58 @@
 // playerjump
 let dino = document.querySelector(".dino");
 let tryno = document.querySelector(".tryno");
+let dis = document.querySelector("#gameover");
 let going = new Audio("GoingOn.mp3");
 let lost = new Audio("lost.mp3");
 let score = 0;
 let playsound = false;
 isover = false;
-let dis = document.querySelector("#gameover");
+
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
         dis.textContent = "";
     }, 1000);
 }
-
+//speed
 incre(score);
+//check game state
 trigger();
 function trigger() {
-    setInterval(function () {
-        let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
-        let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
-        let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
-        let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
-        x = Math.abs(dx - tx);
-        y = Math.abs(dy - ty);
-        if (x < 50 && y <= 255) {
-            if (playsound) {
-                going.pause();
-                lost.play();
+    let x = 0;
+    let y = 0;
+    let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
+    let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
+    if(dinowidth == 300 && dinoheight == 190 || dinowidth == 370 && dinoheight == 220){
+        setInterval(function () {
+            let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+            let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+            let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
+            let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
+            x = Math.abs(dx - tx);
+            y = Math.abs(dy - ty);
+            if (x < 50 && y <= 255) {
+                isover = true;
+                if (playsound) {
+                    going.pause();
+                    lost.play();
+                }
+                tryno.classList.remove("runanimation");
+                dino.classList.remove("jumpant");
+                let dis = document.querySelector("#gameover");
+                dis.removeAttribute("text");
+                dis.textContent = "Game Over";
+                if (score > 0) {
+                    score = score - 1;
+                    updateScore(score);
+                }
+                score = 0;
+                let btn = play();
+                dis.appendChild(btn);
             }
-
-            tryno.classList.remove("runanimation");
-            dino.classList.remove("jumpant");
-            let dis = document.querySelector("#gameover");
-            dis.removeAttribute("text");
-            dis.textContent = "Game Over";
-            if (score > 0) {
-                score = score - 1;
-                updateScore(score);
-            }
-            score = 0;
-            isover = true;
-            let btn = play();
-            dis.appendChild(btn);
-        }
-    }, 300);
+        }, 300);
+        
+    }
+    
 }
 
 
@@ -68,16 +77,15 @@ document.addEventListener("keydown", function (e) {
         }
     }
 
-    let x = 0;
-    let y = 0;
-
-    //gameover
-    //here...
+    //game state check
     trigger();
+    //score
+
     if (!isover) {
         score += 1;
         updateScore(score);
     }
+
 });
 function updateScore(score) {
     let scores = document.querySelector("#score");
@@ -176,39 +184,6 @@ document.addEventListener("touchstart", function () {
         updateScore(score);
     }
 });
-
-// function check() {
-//     //gameover
-//     going.pause();
-//     lost.play();
-//     over = true;
-//     tryno.classList.remove("runanimation");
-//     dino.classList.remove("jumpant");
-//     let dis = document.querySelector("#gameover");
-//     dis.removeAttribute("text");
-//     dis.textContent = "Game Over";
-//     if (score > 0) {
-//         score = score - 1;
-//         updateScore(score);
-//     }
-//     score = 0;
-//     isover = true;
-//     let btn = play();
-//     dis.appendChild(btn);
-// }
-// function compute() {
-//     let x = 0;
-//     let y = 0;
-//     let dino = document.querySelector(".dino");
-//     let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
-//     let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
-//     let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
-//     let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
-//     x = Math.abs(dx - tx);
-//     y = Math.abs(dy - ty);
-//     return ([x, y]);
-// }
-
 
 
 
