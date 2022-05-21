@@ -50,8 +50,25 @@ function trigger() {
                 dis.appendChild(btn);
             }
         }, 300);
-        
     }
+    else if (dinowidth == 123 && dinoheight == 125) {
+        if (x < 5 && y <= 255) {
+            going.pause();
+            lost.play();
+            tryno.classList.remove("runanimation");
+            dino.classList.remove("jumpant");
+            let dis = document.querySelector("#gameover");
+            dis.removeAttribute("text");
+            dis.textContent = "Game Over";
+            if (score > 0) {
+                score = score - 1;
+                updateScore(score);
+            }
+            score = 0;
+            isover = true;
+            let btn = play();
+            dis.appendChild(btn);
+        }
     
 }
 
