@@ -13,6 +13,7 @@ if (dis.hasAttribute("class")) {
 }
 
 incre(score);
+
 document.addEventListener("keydown", function (e) {
     setInterval(function () {
         going.play();
@@ -102,38 +103,71 @@ document.addEventListener("touchstart", function () {
 
     setInterval(function () {
         going.play();
-    }, 100);
-
+    }, 1000);
+    let code = e.code;
     if (!isover) {
-        dino.classList.add("jumpant");
-        setTimeout(function () {
-            dino.classList.remove("jumpant");
-        }, 2000);
+            isup = true;
+            dino.classList.add("jumpant");
+            setTimeout(function () {
+                dino.classList.remove("jumpant");
+            }, 2000);
+        
     }
+    let x = 0;
+    let y = 0;
 
-    if (dinowidth == "123px" && dinoheight == "125px" && trynowidth == "350px" && trynoheight == "380px") {
-        let x = 0;
-        let y = 0;
-        setInterval(function () {
-            let val = compute();
-            x = val[0];
-            y = val[1];
-        }, 300);
-        if (x < 50 && y <= 255) {
-            check();
-        }
-    }
-    else {
-        setInterval(function () {
-            let val = compute();
-            x = val[0];
-            y = val[1];
-        }, 300);
-        if (x < 5 && y <= 255) {
-            check();
-        }
-    }
+    //gameover
+    setInterval(function () {
+        let dino = document.querySelector(".dino");
+        let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+        let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+        let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
+        let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
+        x = Math.abs(dx - tx);
+        y = Math.abs(dy - ty);
+        if(dinowidth== "123" && dinoheight=="125" && trynowidth=="350" && trynoheight=="380"){
+            if (x < 5 && y <= 255) {
+                going.pause();
+                lost.play();
+                over = true;
+                tryno.classList.remove("runanimation");
+                dino.classList.remove("jumpant");
+                let dis = document.querySelector("#gameover");
+                dis.removeAttribute("text");
+                dis.textContent = "Game Over";
+                if (score > 0) {
+                    score = score - 1;
+                    updateScore(score);
+                }
+                score = 0;
+                isover = true;
+                let btn = play();
+                dis.appendChild(btn);
+            }
 
+            else if(dinowidth=="300" && dinoheight=="190"  || dinowidth=="370" && dinoheight=="220"){
+                if (x < 5 && y <= 255) {
+                    going.pause();
+                    lost.play();
+                    over = true;
+                    tryno.classList.remove("runanimation");
+                    dino.classList.remove("jumpant");
+                    let dis = document.querySelector("#gameover");
+                    dis.removeAttribute("text");
+                    dis.textContent = "Game Over";
+                    if (score > 0) {
+                        score = score - 1;
+                        updateScore(score);
+                    }
+                    score = 0;
+                    isover = true;
+                    let btn = play();
+                    dis.appendChild(btn);
+                }
+            }
+        }
+        
+    }, 300);
     if (!isover) {
         score += 1;
         updateScore(score);
