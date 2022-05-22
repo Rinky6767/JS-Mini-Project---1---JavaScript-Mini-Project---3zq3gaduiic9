@@ -19,6 +19,7 @@ if (dis.hasAttribute("class")) {
 }
 //speed
 incre(score);
+trigger();
 function trigger() {
     let x = 0;
     let y = 0;
