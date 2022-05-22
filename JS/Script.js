@@ -16,7 +16,11 @@ if (dis.hasAttribute("class")) {
 //speed
 incre(score);
 //check game state
-trigger();
+let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
+let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
+if(dinowidth == 123 && dinoheight == 125){smallHandle();}
+else{trigger();}
+
 function trigger() {
     let x = 0;
     let y = 0;
@@ -183,7 +187,7 @@ document.addEventListener("touchstart", function () {
 window.addEventListener("load", function(){
     going.play();
 });
-smallHandle();
+
 function smallHandle(){
     let x = 0;
     let y = 0;
