@@ -214,7 +214,7 @@ window.addEventListener("load", function(){
                 let btn = play();
                 dis.appendChild(btn);
             }
-        }, 300);
+        }, 200);
     }
 })
 
