@@ -181,8 +181,10 @@ document.addEventListener("touchstart", function () {
 });
 
 window.addEventListener("load", function(){
-
     going.play();
+});
+smallHandle();
+function smallHandle(){
     let x = 0;
     let y = 0;
     let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
@@ -216,8 +218,7 @@ window.addEventListener("load", function(){
             }
         }, 200);
     }
-})
-
+}
 
 
 
