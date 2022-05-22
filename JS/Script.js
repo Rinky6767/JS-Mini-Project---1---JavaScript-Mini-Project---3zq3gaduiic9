@@ -7,11 +7,11 @@ let lost = new Audio("lost.mp3");
 let score = 0;
 let playsound = false;
 isover = false;
-window.addEventListener("load", function () {
-  setTimeout(function(){
-    going.play();
-  },1000) ;
-});
+// window.addEventListener("load", function () {
+//   setTimeout(function(){
+//     going.play();
+//   },1000) ;
+// });
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
         dis.textContent = "";
@@ -67,7 +67,9 @@ function trigger() {
                 let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
                 x = Math.abs(dx - tx);
                 y = Math.abs(dy - ty);
-                if (x < 5 && y <= 255) {
+                console.log("x:  "+x);
+                console.log("y: "+y);
+                if (x < 8 && y <= 255) {
                     isover = true;
                     if (playsound) {
                         going.pause();
