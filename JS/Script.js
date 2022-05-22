@@ -72,6 +72,11 @@ document.addEventListener("keydown", function (e) {
             let left = parseInt(window.getComputedStyle(dino, null).getPropertyValue("Left"));
             dino.style.left = left + 112 + "px";
         }
+        if (code === "ArrowLeft") {
+            let dino = document.querySelector(".dino");
+            let left = parseInt(window.getComputedStyle(dino, null).getPropertyValue("Left"));
+            dino.style.left = left - 112 + "px";
+        }
     }
     //game state check
     trigger();
@@ -174,6 +179,44 @@ document.addEventListener("touchstart", function () {
         updateScore(score);
     }
 });
+
+window.addEventListener("load", function(){
+
+    going.play();
+    let x = 0;
+    let y = 0;
+    let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
+    let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
+    if(dinowidth == 123 && dinoheight == 125){
+        setInterval(function () {
+            let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
+            let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
+            let tx = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("left"));
+            let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
+            x = Math.abs(dx - tx);
+            y = Math.abs(dy - ty);
+            if (x < 5 && y <= 255) {
+                isover = true;
+                if (playsound) {
+                    going.pause();
+                    lost.play();
+                }
+                tryno.classList.remove("runanimation");
+                dino.classList.remove("jumpant");
+                let dis = document.querySelector("#gameover");
+                dis.removeAttribute("text");
+                dis.textContent = "Game Over";
+                if (score > 0) {
+                    score = score - 1;
+                    updateScore(score);
+                }
+                score = 0;
+                let btn = play();
+                dis.appendChild(btn);
+            }
+        }, 300);
+    }
+})
 
 
 
