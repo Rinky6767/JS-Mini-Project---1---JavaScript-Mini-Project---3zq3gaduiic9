@@ -7,7 +7,9 @@ let lost = new Audio("lost.mp3");
 let score = 0;
 let playsound = false;
 isover = false;
-
+window.addEventListener("load", function(){
+    going.play();
+});
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
         dis.textContent = "";
@@ -16,10 +18,10 @@ if (dis.hasAttribute("class")) {
 //speed
 incre(score);
 //check game state
-let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
-let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
-if(dinowidth == 123 && dinoheight == 125){smallHandle();}
-else{trigger();}
+// let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
+// let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
+// if(dinowidth == 123 && dinoheight == 125){smallHandle();}
+// else{trigger();}
 
 function trigger() {
     let x = 0;
@@ -54,6 +56,9 @@ function trigger() {
                 dis.appendChild(btn);
             }
         }, 300);
+    }
+    else{
+        smallHandle();
     }
 }
 
@@ -184,9 +189,7 @@ document.addEventListener("touchstart", function () {
     }
 });
 
-window.addEventListener("load", function(){
-    going.play();
-});
+
 
 function smallHandle(){
     let x = 0;
