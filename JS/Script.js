@@ -7,8 +7,10 @@ let lost = new Audio("lost.mp3");
 let score = 0;
 let playsound = false;
 isover = false;
-window.addEventListener("load", function(){
+window.addEventListener("load", function () {
+  setTimeout(function(){
     going.play();
+  },1000) ;
 });
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
@@ -22,7 +24,7 @@ function trigger() {
     let y = 0;
     let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
     let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
-    if(dinowidth == 300 && dinoheight == 190 || dinowidth == 370 && dinoheight == 220){
+    if (dinowidth == 300 && dinoheight == 190 || dinowidth == 370 && dinoheight == 220) {
         setInterval(function () {
             let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
             let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
@@ -51,12 +53,12 @@ function trigger() {
             }
         }, 300);
     }
-    else{
+    else {
         let x = 0;
         let y = 0;
         let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
         let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
-        if(dinowidth == 123 && dinoheight == 125){
+        if (dinowidth == 123 && dinoheight == 125) {
             setInterval(function () {
                 let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
                 let dy = parseInt(window.getComputedStyle(dino, null).getPropertyValue("top"));
@@ -217,9 +219,6 @@ document.addEventListener("touchstart", function () {
 
 
 
-function smallHandle(){
-   
-}
 
 
 
