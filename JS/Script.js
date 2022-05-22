@@ -7,11 +7,7 @@ let lost = new Audio("lost.mp3");
 let score = 0;
 let playsound = false;
 isover = false;
-// window.addEventListener("load", function () {
-//   setTimeout(function(){
-//     going.play();
-//   },1000) ;
-// });
+
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
         dis.textContent = "";
@@ -55,10 +51,8 @@ function trigger() {
         }, 300);
     }
     else {
-        let x = 0;
-        let y = 0;
-        let dinowidth = parseInt(window.getComputedStyle(dino, null).getPropertyValue("width"));
-        let dinoheight = parseInt(window.getComputedStyle(dino, null).getPropertyValue("height"));
+        x = 0;
+        y = 0;
         if (dinowidth == 123 && dinoheight == 125) {
             setInterval(function () {
                 let dx = parseInt(window.getComputedStyle(dino, null).getPropertyValue("left"));
@@ -67,8 +61,6 @@ function trigger() {
                 let ty = parseInt(window.getComputedStyle(tryno, null).getPropertyValue("top"));
                 x = Math.abs(dx - tx);
                 y = Math.abs(dy - ty);
-                console.log("x:  "+x);
-                console.log("y: "+y);
                 if (x < 8 && y <= 255) {
                     isover = true;
                     if (playsound) {
@@ -176,7 +168,7 @@ document.addEventListener("touchstart", function () {
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
         if (dinowidth == 123 && dinoheight == 125) {
-            if (x < 5 && y <= 255) {
+            if (x < 8 && y <= 255) {
                 going.pause();
                 lost.play();
                 tryno.classList.remove("runanimation");
@@ -214,6 +206,7 @@ document.addEventListener("touchstart", function () {
             }
         }
     }, 300);
+    trigger();
     if (!isover) {
         score += 1;
         updateScore(score);
