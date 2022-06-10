@@ -168,7 +168,7 @@ document.addEventListener("touchstart", function () {
         x = Math.abs(dx - tx);
         y = Math.abs(dy - ty);
         if (dinowidth == 123 && dinoheight == 125) {
-            if (x < 7 && y <= 255) {
+            if (x > 10 && y <= 255) {
                 going.pause();
                 lost.play();
                 tryno.classList.remove("runanimation");
