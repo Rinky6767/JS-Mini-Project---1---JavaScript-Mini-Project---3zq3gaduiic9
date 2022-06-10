@@ -2,6 +2,7 @@
 let dino = document.querySelector(".dino");
 let tryno = document.querySelector(".tryno");
 let dis = document.querySelector("#gameover");
+let htbtn= document.getElementById("htnbtn").addEventListener("click",Hint);
 let going = new Audio("GoingOn.mp3");
 let lost = new Audio("lost.mp3");
 let score = 0;
@@ -212,6 +213,11 @@ document.addEventListener("touchstart", function () {
         updateScore(score);
     }
 });
+
+//Hint 
+function Hint(){
+    alert("To get Score you have to save yourself from another dinosaur comming from front in order to save yourself you have to jump by pressing ArrowUp key and to move forward use ArrowRight key and to move backward use ArrowLeft key.")
+}
 
 
 
