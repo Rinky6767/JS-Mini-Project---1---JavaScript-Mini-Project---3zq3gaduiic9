@@ -216,7 +216,7 @@ document.addEventListener("touchstart", function () {
 
 //Hint 
 function Hint(){
-    alert("To get Score you have to save yourself from another dinosaur comming from front in order to save yourself you have to jump by pressing ArrowUp key and to move forward use ArrowRight key and to move backward use ArrowLeft key.")
+    alert("\nMobile: just touch on the Screen to Jump. \n\nDevices with keyboard: To get Score you have to save yourself from another dinosaur comming from front in order to save yourself you have to jump by pressing ArrowUp key and to move forward use ArrowRight key and to move backward use ArrowLeft key.")
 }
 
 
