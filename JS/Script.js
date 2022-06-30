@@ -8,6 +8,7 @@ let lost = new Audio("lost.mp3");
 let score = 0;
 let playsound = false;
 isover = false;
+let isincre=true;
 
 if (dis.hasAttribute("class")) {
     setTimeout(function () {
@@ -115,8 +116,15 @@ document.addEventListener("keydown", function (e) {
     trigger();
     //score
     if (!isover) {
-        score += 1;
-        updateScore(score);
+        if(isincre){
+            score += 1;
+            updateScore(score);
+            isincre=false;
+        }
+        setTimeout(()=>{
+            isincre= true;
+        },700);
+       
     }
 
 });
@@ -209,8 +217,14 @@ document.addEventListener("touchstart", function () {
     }, 300);
     trigger();
     if (!isover) {
-        score += 1;
-        updateScore(score);
+        if(isincre){
+            score += 1;
+            updateScore(score);
+            isincre=false;
+        }
+        setTimeout(()=>{
+            isincre= true;
+        },700);
     }
 });
 
